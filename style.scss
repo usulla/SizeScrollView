@@ -1,0 +1,157 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.page {
+    background: #d8f3ee;
+    ;
+    width: 50vw;
+    position: absolute;
+    z-index: 1;
+}
+
+.parent_container {
+    position: relative;
+    background: #f4f4f4;
+    text-align: center;
+    span {
+        text-align: center;
+        color: #9a9898;
+        font-size: 2vw;
+        line-height: 2vw;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-family: Roboto, sans-serif;
+        position: absolute;
+        top: 4vh;
+        width: 100%;
+        left: 0;
+    }
+}
+
+.border__title {
+    top: calc(13vh - 1vw)!important;
+    z-index: 3;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    width: 25vw;
+    height: 30vh;
+    overflow: scroll;
+    border: 6vh solid #fdcdd8f5;
+    padding: 3vh;
+    background: #97e0d4;
+    margin: 10vh;
+
+    div span {
+        color: #fff;
+        font-size: 3vw;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-family: Roboto, sans-serif;
+
+        &:nth-child(1) {
+            padding-top: 12.5vh;
+            height: 42vh;
+        }
+        &:nth-child(2) {
+            position: absolute;
+            bottom: -5.5vh!important;
+            top: auto;
+        }
+    }
+}
+
+
+/* SVG */
+
+.line_offsetTop {
+    position: absolute;
+    left: 10vh;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.line_clientTop {
+    position: absolute;
+    left: -15vh;
+    top: 10vh;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+
+    .line2 {
+        position: absolute;
+        top: 6vh;
+    }
+}
+
+.line_scrollTop {
+    position: absolute;
+    right: -15vh;
+    top: 10vh;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+
+    .line1,
+    .line3 {
+        position: absolute;
+        top: 6vh;
+    }
+    .line2 {
+        margin-top: 6vh;
+    }
+    .size__number {
+        right: -3vw;
+    }
+}
+
+.line_scrollHeight {
+    position: absolute;
+    right: -15vh;
+    top: 10vh;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+
+    .line1 {
+        position: absolute;
+        top: 6vh;
+    }
+    .line2 {
+        margin-top: 6vh;
+    }
+    .size__number {
+        right: -3vw;
+    }
+}
+
+.size__arrow {
+    align-self: flex-start;
+}
+
+.size__number {
+    position: absolute;
+    background: #fff;
+    margin-left: 10px;
+    padding: 3px;
+}
+
+.size span {
+    width: auto;
+    font-size: 1.5vw;
+    text-transform: none;
+    background: #fff;
+    position: relative;
+    top: 0;
+}

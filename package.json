@@ -1,0 +1,12 @@
+{
+  "name": "sizescrollview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "sass": "node-sass --output-style -o css css"
+  },
+  "author": "Maria Sukhareva",
+  "license": "ISC",
+  "dependencies": {}
+}
