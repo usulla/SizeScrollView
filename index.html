@@ -13,15 +13,16 @@
 <body>
     <div class="parent_container">
         <span>parentNode</span>
+        <span class="title_parentNode">parentNode</span>
         <span class="border__title">border</span>
         <!-- -->
         <div class="line_offsetTop size">
             <svg class="size__arrow line1">
-                <line x1="0" y1="0" x2="180" y2="0" stroke="#000" stroke-width="2" /></line>
+                <line x1="0" y1="0" x2="280" y2="0" stroke="#000" stroke-width="2" /></line>
             </svg>
             <svg class="size__arrow line2">
                 <!-- 	<polyline points="0,0 0,80" fill="white" stroke="#000" stroke-width="2" /> -->
-                <line x1="0" y1="0" x2="0" y2="80" stroke="#000" stroke-width="2" /></line>
+                <line x1="0" y1="0" x2="0" y2="280" stroke="#000" stroke-width="2" /></line>
             </svg>
             <div class="size__number">
                 <span>offsetTop <br>=</span>
@@ -32,10 +33,10 @@
         <!-- -->
         <div class="line_clientTop size">
             <svg class="size__arrow line1">
-                <line x1="0" y1="0" x2="280" y2="0" stroke="#000" stroke-width="2" /></line>
+                <line x1="0" y1="0" x2="380" y2="0" stroke="#000" stroke-width="2" /></line>
             </svg>
             <svg class="size__arrow line2">
-                <line x1="60" y1="0" x2="280" y2="0" stroke="#000" stroke-width="2" /></line>
+                <line x1="60" y1="0" x2="480" y2="0" stroke="#000" stroke-width="2" /></line>
             </svg>
             <svg class="size__arrow line3">
                 <line x1="190" y1="0" x2="190" y2="100" stroke="#000" stroke-width="1" /></line>
@@ -122,98 +123,109 @@
 
 </html>
 <script>
-const parentContainer = document.querySelector('.parent_container');
-const container = document.querySelector('.container');
-// const sizesContainer = document.querySelector('.sizes_container');
-const page = document.querySelector('.page');
+function getSizes() {
+    const parentContainer = document.querySelector('.parent_container');
+    const container = document.querySelector('.container');
+    // const sizesContainer = document.querySelector('.sizes_container');
+    const page = document.querySelector('.page');
 
-// clientWidth/clientHeight
-const contClientWidth = container.clientWidth;
-const contClientHeight = container.clientHeight;
+    // clientWidth/clientHeight
+    const contClientWidth = container.clientWidth;
+    const contClientHeight = container.clientHeight;
 
-// offsetWidth/offsetHeight
-const contOffsetWidth = container.offsetWidth;
-const contOffsetHeight = container.offsetHeight;
+    // offsetWidth/offsetHeight
+    const contOffsetWidth = container.offsetWidth;
+    const contOffsetHeight = container.offsetHeight;
 
-// offsetTop/offsetLeft
-const contOffsetTop = container.offsetTop;
-const contOffsetLeft = container.offsetLeft;
+    // offsetTop/offsetLeft
+    const contOffsetTop = container.offsetTop;
+    const contOffsetLeft = container.offsetLeft;
 
-// clientTop/clientLeft
-const contClientTop = container.clientTop;
-const contClientLeft = container.clientLeft;
+    // clientTop/clientLeft
+    const contClientTop = container.clientTop;
+    const contClientLeft = container.clientLeft;
 
-// scrollHeight/scrollWidth
-const contScrollHeight = container.scrollHeight;
-const contScrollWidth = container.scrollWidth;
+    // scrollHeight/scrollWidth
+    const contScrollHeight = container.scrollHeight;
+    const contScrollWidth = container.scrollWidth;
 
-// FOR WINDOW
-// window.innerHeight/window.innerWidth
-const windowInnerHeight = window.innerHeight;
-const windowInnerWidth = window.innerWidth;
+    // FOR WINDOW
+    // window.innerHeight/window.innerWidth
+    const windowInnerHeight = window.innerHeight;
+    const windowInnerWidth = window.innerWidth;
 
-// window.scrollY/window.scrollX
-const windowScrollY = window.scrollY;
-const windowScrollX = window.scrollX;
+    // window.scrollY/window.scrollX
+    const windowScrollY = window.scrollY;
+    const windowScrollX = window.scrollX;
 
-// sizesContainer.innerHTML = `clientWidth = ${contClientWidth}`;
-container.addEventListener('scroll', checkScroll);
+    // sizesContainer.innerHTML = `clientWidth = ${contClientWidth}`;
+    container.addEventListener('scroll', checkScroll);
 
-// page position
-page.style.top = `${contOffsetTop + contClientTop}px`;
-page.style.left = `${contOffsetLeft + contClientLeft}px`;
+    // page position
+    page.style.top = `${contOffsetTop + contClientTop}px`;
+    page.style.left = `${contOffsetLeft + contClientLeft}px`;
 
-page.style.height = `${contScrollHeight}px`;
-page.style.width = `${contOffsetWidth - contClientLeft*2}px`;
-document.querySelector('.line_scrollHeight .line1').style.transform = `translateY(${contScrollHeight-1}px)`;
-document.querySelector('.line_scrollHeight .line2 line').setAttribute('y2', `${contScrollHeight}px`);
-document.querySelector('.line_scrollHeight .line2').setAttribute('height', `${contScrollHeight}px`);
+    page.style.height = `${contScrollHeight}px`;
+    page.style.width = `${contOffsetWidth - contClientLeft*2}px`;
+    /* Resize window */
+    window.addEventListener('resize', function(event) {
+        page.style.width = `${contOffsetWidth - contClientLeft*2}px`;
+    })
+    /* Lines Scroll Height*/
+    document.querySelector('.line_scrollHeight .line1').style.transform = `translateY(${contScrollHeight-1}px)`;
+    document.querySelector('.line_scrollHeight .line2 line').setAttribute('y2', `${contScrollHeight}px`);
+    document.querySelector('.line_scrollHeight .line2').setAttribute('height', `${contScrollHeight}px`);
 
-document.querySelector('.line_offsetTop .line2 line').setAttribute('y2', `${contOffsetTop}px`);
+    document.querySelector('.line_offsetTop .line2 line').setAttribute('y2', `${contOffsetTop}px`);
+
+    const coordStartPage = parseInt(getComputedStyle(page).top);
+
+    document.querySelectorAll('.line_offsetTop .size__number span')[1].innerHTML = `${contOffsetTop}px`;
+    document.querySelectorAll('.line_clientTop .size__number span')[1].innerHTML = `${contClientTop}px`;
+    document.querySelectorAll('.line_scrollHeight .size__number span')[1].innerHTML = `${contScrollHeight}px`;
+    document.querySelectorAll('.line_clientHeight .size__number span')[1].innerHTML = `${contClientHeight}px`;
+    document.querySelectorAll('.line_offsetHeight .size__number span')[1].innerHTML = `${contOffsetHeight}px`;
+
+    /* Lines ClientTop */
+    document.querySelector('.line_clientTop .line3 line').setAttribute('y2', `${contClientTop}px`);
+
+    /* Lines ClientHeights */
+    document.querySelector('.line_clientHeight').style.top = `${contOffsetTop+contClientTop}px`;
+    document.querySelector('.line_clientHeight .line1').style.transform = `translateY(${contClientHeight}px)`;
+    document.querySelector('.line_clientHeight .line2 line').setAttribute('y2', `${contClientHeight}px`);
+    document.querySelector('.line_clientHeight .line2').setAttribute('height', `${contClientHeight}px`);
+    /* Lines OffsetHeights */
+
+    document.querySelector('.line_offsetHeight .line1').style.transform = `translateY(${contOffsetTop+contOffsetHeight-1}px)`;
+    // ???
+    document.querySelector('.line_offsetHeight .line2 line').setAttribute('y2', `${contClientHeight+contOffsetTop+13}px`);
+    document.querySelector('.line_offsetHeight .line2 line').setAttribute('height', `${contOffsetHeight}px`);
+    document.querySelector('.line_offsetHeight .line2').style.transform = `translateY(${contOffsetTop}px)`;
+    document.querySelector('.line_offsetHeight .line2').setAttribute('height', `${contOffsetHeight}px`);
 
 
-const coordStartPage = parseInt(getComputedStyle(page).top);
+    /* Change style top for Page */
+    function checkScroll(e) {
+        // scrollTop/scrollLeft
+        const contScrollTop = container.scrollTop;
+        const contScrollLeft = container.scrollLeft;
+        page.style.top = `${coordStartPage-contScrollTop}px`;
 
-document.querySelectorAll('.line_offsetTop .size__number span')[1].innerHTML = `${contOffsetTop}px`;
-document.querySelectorAll('.line_clientTop .size__number span')[1].innerHTML = `${contClientTop}px`;
-document.querySelectorAll('.line_scrollHeight .size__number span')[1].innerHTML = `${contScrollHeight}px`;
-document.querySelectorAll('.line_clientHeight .size__number span')[1].innerHTML = `${contClientHeight}px`;
-document.querySelectorAll('.line_offsetHeight .size__number span')[1].innerHTML = `${contOffsetHeight}px`;
+        // move size line scrollTop
+        document.querySelector('.line_scrollTop .line1').style.transform = `translateY(${-contScrollTop}px)`;
+        document.querySelector('.line_scrollTop .line3').style.transform = `translateY(${-contScrollTop}px)`;
+        // view scrollTop number
+        document.querySelectorAll('.line_scrollTop .size__number span')[1].innerHTML = `${contScrollTop}px`;
+        document.querySelector('.line_scrollTop .line3 line').setAttribute('y2', `${contScrollTop}px`);
+        document.querySelector('.line_scrollTop .line3').setAttribute('height', `${contScrollTop}px`);
 
-/* Lines ClientTop */
-document.querySelector('.line_clientTop .line3 line').setAttribute('y2', `${contClientTop}px`);
-
-/* Lines ClientHeights */
-document.querySelector('.line_clientHeight').style.top = `${contOffsetTop+contClientTop}px`;
-document.querySelector('.line_clientHeight .line1').style.transform = `translateY(${contClientHeight}px)`;
-document.querySelector('.line_clientHeight .line2 line').setAttribute('y2', `${contClientHeight}px`);
-document.querySelector('.line_clientHeight .line2').setAttribute('height', `${contClientHeight}px`);
-/* Lines OffsetHeights */
-
-document.querySelector('.line_offsetHeight .line1').style.transform = `translateY(${contOffsetTop+contOffsetHeight-1}px)`;
-// ???
-document.querySelector('.line_offsetHeight .line2 line').setAttribute('y2', `${contClientHeight+contOffsetTop+13}px`);
-document.querySelector('.line_offsetHeight .line2 line').setAttribute('height', `${contOffsetHeight}px`);
-document.querySelector('.line_offsetHeight .line2').style.transform = `translateY(${contOffsetTop}px)`;
-document.querySelector('.line_offsetHeight .line2').setAttribute('height', `${contOffsetHeight}px`);
-
-
-/* Change style top for Page */
-function checkScroll(e) {
-    // scrollTop/scrollLeft
-    const contScrollTop = container.scrollTop;
-    const contScrollLeft = container.scrollLeft;
-    page.style.top = `${coordStartPage-contScrollTop}px`;
-
-    // move size line scrollTop
-    document.querySelector('.line_scrollTop .line1').style.transform = `translateY(${-contScrollTop}px)`;
-    document.querySelector('.line_scrollTop .line3').style.transform = `translateY(${-contScrollTop}px)`;
-    // view scrollTop number
-    document.querySelectorAll('.line_scrollTop .size__number span')[1].innerHTML = `${contScrollTop}px`;
-    document.querySelector('.line_scrollTop .line3 line').setAttribute('y2', `${contScrollTop}px`);
-    document.querySelector('.line_scrollTop .line3').setAttribute('height', `${contScrollTop}px`);
-
-    document.querySelector('.line_scrollHeight .line1').style.transform = `translateY(${contScrollHeight-1-contScrollTop}px)`;
-    document.querySelector('.line_scrollHeight .line2').style.transform = `translateY(${-contScrollTop}px)`;
+        document.querySelector('.line_scrollHeight .line1').style.transform = `translateY(${contScrollHeight-1-contScrollTop}px)`;
+        document.querySelector('.line_scrollHeight .line2').style.transform = `translateY(${-contScrollTop}px)`;
+    }
 }
+getSizes();
+
+window.addEventListener('resize', getSizes);
 </script>
+
+

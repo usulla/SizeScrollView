@@ -27,6 +27,9 @@ body {
     top: 4vh;
     width: 100%;
     left: 0; }
+  .parent_container .title_parentNode {
+    bottom: 4vh;
+    top: auto; }
 
 .border__title {
   top: calc(13vh - 1vw) !important;
@@ -129,6 +132,9 @@ body {
     right: 5vw;
     top: -2vw;
     text-align: left; }
+  .line_scrollTop .size__number span:nth-child(2) {
+    font-weight: 600;
+    color: green; }
 
 .line_scrollHeight {
   position: absolute;
